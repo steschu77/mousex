@@ -1,0 +1,33 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4.1.1
+
+    - name: Set up MSVC
+      uses: microsoft/setup-msbuild@v2.0.0
+
+    - name: Install CMake
+      uses: threeal/cmake-action@v1.3.0
+
+    - name: Configure CMake
+      run: cmake -Bbuild -S. -G"Visual Studio 17 2022" -DCMAKE_BUILD_TYPE=MinSizeRel
+
+    - name: Build
+      run: cmake --build build --config MinSizeRel
+
+    - name: Upload artifacts
+      if: ${{ success() }}
+      uses: actions/upload-artifact@v4.3.1
+      with:
+        name: Win32_Build
+        path: build/MinSizeRel/

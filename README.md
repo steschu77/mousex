@@ -1,5 +1,7 @@
 # Mouse and Keyboard Extensions for Windows
 
+[![Build Status](https://github.com/steschu77/mousex/workflows/Build/badge.svg)](https://github.com/steschu77/mousex/actions)
+
 ## Summary
 
 This lightweight utility enhances Windows experience by providing the following features:
